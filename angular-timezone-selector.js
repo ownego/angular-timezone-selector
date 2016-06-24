@@ -57,7 +57,7 @@ angular.module('angular-timezone-selector', [])
     return {
       restrict: 'E',
       replace: true,
-      template: '<select style="min-width:300px;"></select>',
+      template: '<select style="min-width:260px;"></select>',
       scope: {
         ngModel: '=',
         translations: '='
@@ -146,8 +146,17 @@ angular.module('angular-timezone-selector', [])
         _.forEach(data, function (group) {
           var optgroup = $('<optgroup label="' + group.text + '">')
           group.children.forEach(function (option) {
-            if (attrs.displayUtc === 'true' && option.name.indexOf('(UTC') === -1) {
-              option.name = option.name + ' (' + option.offset + ')'
+            var $doc = document
+              , $win = window
+              , _screenWidth = $win.innerWidth
+                            || $doc.documentElement.clientWidth
+                            || $doc.body.clientWidth
+              ;
+
+            if (_screenWidth >= 480) {
+              if (attrs.displayUtc === 'true' && option.name.indexOf('(UTC') === -1) {
+                option.name = option.name + ' (' + option.offset + ')'
+              }
             }
 
             optgroup.append('<option value="' + option.id + '">' +

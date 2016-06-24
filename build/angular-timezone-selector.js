@@ -153,7 +153,6 @@ angular.module('angular-timezone-selector', [])
                             || $doc.body.clientWidth
               ;
 
-            console.log(_screenWidth);
             if (_screenWidth >= 480) {
               if (attrs.displayUtc === 'true' && option.name.indexOf('(UTC') === -1) {
                 option.name = option.name + ' (' + option.offset + ')'
